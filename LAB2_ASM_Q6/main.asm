@@ -27,14 +27,19 @@ StopWDT     mov.w   #WDTPW|WDTHOLD,&WDTCTL  ; Stop watchdog timer
 			mov #2D97h, R4;
 			mov #6239h, R5;
 			mov #3427h, R6; Third Number (Wasn't Specified)
+
+					  ; For and ops
+			mov R5, R8; (to not change numbers)
+
 			call #and_operation;
 			jmp $;
 
 and_operation:
-			and R4, R5;
-			and R5, R6;
-			mov R6, &203Ch
+			and R4, R8;
+			and R6, R8;
+			mov R8, &203Ch
 			ret;
+
 
 ;-------------------------------------------------------------------------------
 ; Stack Pointer definition
